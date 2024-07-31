@@ -24,7 +24,8 @@ Floating point operations could be done alone without the top level design, but 
 this means for example:dividing 0 by 0 would yield a wrong result instead of NAN, so additional code must be written.  
 mostly these operations need normalization so we need loops especially non-parallel operations as division, each quotient needs to be computed after the previous quotient and so on,
 this means that we need to test values for normalization each clock cycle.  
-For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control unit that takes care of the normalization process.
+For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control unit that takes care of the normalization process.  
+This module operates on upto **131Mhz** on altera's quartusII 13 software(CycloneII), and consumes **1057 logic elements** and **289 registers**. 
 # The supported operations:
 OP CODE | OPERATION  
 --------|-----------
