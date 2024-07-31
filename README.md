@@ -21,6 +21,7 @@ When all exponents are 1s and the mantissa is zero then the number is **infinity
 if the mantissa is non-zero then the operand is **NAN (not a number)** used for 0/0 and similar operations.
 # The supported operations
 OP CODE | OPERATION  
+--------|-----------
 000     | MULTIPLICATION  
 001     | DEVISION  
 010     | ADDITION  
