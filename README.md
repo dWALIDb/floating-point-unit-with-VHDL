@@ -20,13 +20,13 @@ sign eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm
 When all exponents are 1s and the mantissa is zero then the number is **infinity**,
 if the mantissa is non-zero then the operand is **NAN (not a number)** used for 0/0 and similar operations.
 # The supported operations
-OP CODE | OPERATION
-000     | MULTIPLICATION
-001     | DEVISION
-010     | ADDITION
-011     | MAX
-100     | MIN 
-101     | CONVERTION  
+OP CODE | OPERATION  
+000     | MULTIPLICATION  
+001     | DEVISION  
+010     | ADDITION  
+011     | MAX  
+100     | MIN   
+101     | CONVERTION    
 
 **PS** these operations do not support denormal numbers, this way be supported by software by additional code.  
 This may lead to higher execution time since operations on denormal numbers may take more time(**up to hundreds of cycles**) but, it is still doable.
