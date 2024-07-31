@@ -1,4 +1,4 @@
-# floating-point-unit-with-VHDL
+# floating-point-unit-with-VHDL:
 This unit does floating point operations.It is almost compatible with IEEE 754 standard,the difference is that denormal numbers flushed to zero in this design.  
 the fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as operand widths for for flexebility and modularity.
 # floating point representation:
@@ -19,7 +19,13 @@ The binary 32 floating point representation is as follows:
 sign eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm  
 When all exponents are 1s and the mantissa is zero then the number is **infinity**,
 if the mantissa is non-zero then the operand is **NAN (not a number)** used for 0/0 and similar operations.
-# The supported operations
+# Code structure:
+Floating point operations could be done alone without the top level design, but the do not come with the detection of infinity or zero.  
+this means for example:dividing 0 by 0 would yield a wrong result instead of NAN, so additional code must be written.  
+mostly these operations need normalization so we need loops especially non-parallel operations as division, each quotient needs to be computed after the previous quotient and so on,
+this means that we need to test values for normalization each clock cycle.  
+For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control unit that takes care of the normalization process. 
+# The supported operations:
 OP CODE | OPERATION  
 --------|-----------
 000     | MULTIPLICATION  
