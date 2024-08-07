@@ -31,13 +31,14 @@ This module operates on upto **127Mhz** on altera's quartusII 13 software(Cyclon
 # The supported operations:
 OP CODE | OPERATION  
 --------|-----------
-000     | MULTIPLICATION  
-001     | DEVISION  
-010     | ADDITION  
-011     | MAX  
-100     | MIN   
-101     | CONV SIGNED INT TO FLOAT    
-110     | CONV FLOAT TO SIGNED INT
-
+0000     | MULTIPLICATION  
+0001     | DEVISION  
+0010     | ADDITION  
+0011     | MAX  
+0100     | MIN   
+0101     | CONV SIGNED INT TO FLOAT    
+0110     | CONV FLOAT TO SIGNED INT
+0111     | TAKE ABSOLUTE VALUE
+1000     | MAKE NEGATIVE
 **PS** these operations do not support denormal numbers, this way be supported by software by additional code.  
 This may lead to higher execution time since operations on denormal numbers may take more time(**up to hundreds of cycles**) but, it is still doable.
