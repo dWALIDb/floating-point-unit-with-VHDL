@@ -39,6 +39,7 @@ OP CODE | OPERATION
 0101     | CONV SIGNED INT TO FLOAT    
 0110     | CONV FLOAT TO SIGNED INT
 0111     | TAKE ABSOLUTE VALUE
-1000     | MAKE NEGATIVE
+1000     | MAKE NEGATIVE  
+
 **PS** these operations do not support denormal numbers, this way be supported by software by additional code.  
 This may lead to higher execution time since operations on denormal numbers may take more time(**up to hundreds of cycles**) but, it is still doable.
