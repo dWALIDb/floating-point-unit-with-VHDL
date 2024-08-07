@@ -1,6 +1,6 @@
 # floating-point-unit-with-VHDL:
 This unit does floating point operations.It is almost compatible with IEEE 754 standard,the difference is that denormal numbers flushed to zero in this design.  
-Tthe fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as operand widths for for flexebility and modularity.  
+The fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as operand widths for for flexebility and modularity.  
 Code is written for **VHDL2008**.
 # floating point representation:
  It is a way of representing data that is similar to scientific notation.  
