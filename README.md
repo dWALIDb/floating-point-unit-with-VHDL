@@ -1,31 +1,32 @@
 # floating-point-unit-with-VHDL:
 This unit does floating point operations.It is almost compatible with IEEE 754 standard,the difference is that denormal numbers flushed to zero in this design.  
-the fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as operand widths for for flexebility and modularity.  
-code is written for **VHDL2008**.
+Tthe fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as operand widths for for flexebility and modularity.  
+Code is written for **VHDL2008**.
 # floating point representation:
  It is a way of representing data that is similar to scientific notation.  
 for example:  
  *125*   is the same as  *1.25 10^2*  
-in binary the radix is 2 so the for mat is as follows:  
+In binary the radix is 2 so the for mat is as follows:  
 *1001*   is the same as 1.001 2^3  
 We can notice that multiplying by 2 in base 2 is **effectively** the same as multiplying by 10 in base 10.  
 The representation is as follows:  
 1.[**mantissa**] 2^[exponent-**BIAS**]  
 **mantissa**: is the fractional part 23 bits in 32 bit representation.
 **exponent**: is stored in excess with bias to repreent positive and negative values of exponents.  
-the leading one is always present when the numbers are normalized, if the number is not normalozed the the number is **denormal** or subnormal this is the case when the exponent is all zeroes.  
-their reepresentation is as follows :  
+The leading one is always present when the numbers are normalized, if the number is not normalozed the the number is **denormal** or subnormal this is the case when the exponent is all zeroes.  
+Their reepresentation is as follows :  
 0.mantissa 2^(-**min exponent**)  
 The binary 32 floating point representation is as follows:  
 sign eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm  
 When all exponents are 1s and the mantissa is zero then the number is **infinity**,
-if the mantissa is non-zero then the operand is **NAN (not a number)** used for 0/0 and similar operations.
+If the mantissa is non-zero then the operand is **NAN (not a number)** used for 0/0 and similar operations.
 # Code structure:
 Floating point operations could be done alone without the top level design, but the do not come with the detection of infinity or zero.  
-this means for example:dividing 0 by 0 would yield a wrong result instead of NAN, so additional code must be written.  
-mostly these operations need normalization so we need loops especially non-parallel operations as division, each quotient needs to be computed after the previous quotient and so on,
+This means for example:dividing 0 by 0 would yield a wrong result instead of NAN, so additional code must be written.  
+Mostly these operations need normalization so we need loops especially non-parallel operations as division, each quotient needs to be computed after the previous quotient and so on,
 this means that we need to test values for normalization each clock cycle.  
-For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control unit that takes care of the normalization process.  
+For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control 
+unit that takes care of the normalization process.  
 This module operates on upto **127Mhz** on altera's quartusII 13 software(CycloneII with balenced settings), and consumes **1283 logic elements** and **356 registers**. 
 # The supported operations:
 OP CODE | OPERATION  
