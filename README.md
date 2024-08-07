@@ -25,7 +25,7 @@ this means for example:dividing 0 by 0 would yield a wrong result instead of NAN
 mostly these operations need normalization so we need loops especially non-parallel operations as division, each quotient needs to be computed after the previous quotient and so on,
 this means that we need to test values for normalization each clock cycle.  
 For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control unit that takes care of the normalization process.  
-This module operates on upto **127Mhz** on altera's quartusII 13 software(CycloneII), and consumes **1283 logic elements** and **356 registers**. 
+This module operates on upto **127Mhz** on altera's quartusII 13 software(CycloneII with balenced settings), and consumes **1283 logic elements** and **356 registers**. 
 # The supported operations:
 OP CODE | OPERATION  
 --------|-----------
