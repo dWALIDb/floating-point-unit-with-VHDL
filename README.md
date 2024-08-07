@@ -34,8 +34,8 @@ OP CODE | OPERATION
 010     | ADDITION  
 011     | MAX  
 100     | MIN   
-101     | CONV TO FLOAT    
-110     | CONV TO INT
+101     | CONV SIGNED INT TO FLOAT    
+110     | CONV FLOAT TO SIGNED INT
 
 **PS** these operations do not support denormal numbers, this way be supported by software by additional code.  
 This may lead to higher execution time since operations on denormal numbers may take more time(**up to hundreds of cycles**) but, it is still doable.
