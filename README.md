@@ -1,7 +1,11 @@
 # floating-point-unit-with-VHDL:
-This unit does floating point operations.It is almost compatible with IEEE 754 standard,the difference is that denormal numbers flushed to zero in this design.  
-The fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as operand widths for for flexebility and modularity.  
-Code is written for **VHDL2008**.
+This unit does floating point operations.It is almost compatible with IEEE 754 standard,the difference is that denormal numbers flushed 
+to zero in this design.  
+The fp_unit is the top level of the hierarchy, and it has a generic for supporting different length of mantissas,exponents as well as 
+operand widths for for flexebility and modularity.  
+Code is written for **VHDL2008**.  
+SPECIAL THANKS FOR THE YOUTUBE PLAYLIST "BUILDING AN FPU IN VERILOG" FROM CRISS LARSEN(@FPUniversity), the videos are very clear and 
+go indepth to how the floating point operations are done.  
 # floating point representation:
  It is a way of representing data that is similar to scientific notation.  
 for example:  
@@ -27,7 +31,7 @@ Mostly these operations need normalization so we need loops especially non-paral
 this means that we need to test values for normalization each clock cycle.  
 For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control 
 unit that takes care of the normalization process.  
-This module operates on upto **132Mhz** on altera's quartusII 13 software(CycloneII with balenced settings), and consumes **1244 logic elements** and **356 registers**. 
+This module operates on upto **127Mhz** on altera's quartusII 13 software(CycloneII with balenced settings), and consumes **1229 logic elements** and **356 registers**. 
 # The supported operations:
 OP CODE | OPERATION  
 --------|-----------
