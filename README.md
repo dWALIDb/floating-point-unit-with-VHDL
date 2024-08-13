@@ -25,7 +25,7 @@ sign eeeeeeee mmmmmmmmmmmmmmmmmmmmmmm
 When all exponents are 1s and the mantissa is zero then the number is **infinity**,
 If the mantissa is non-zero then the operand is **NAN (not a number)** used for 0/0 and similar operations.
 # Code structure:
-Floating point operations could be done alone without the top level design, but the do not come with the detection of infinity or zero.  
+Floating point operations could be done alone without the top level design, but they do not come with the detection of infinity or zero.  
 This means for example:dividing 0 by 0 would yield a wrong result instead of NAN, so additional code must be written.  
 Mostly these operations need normalization so we need loops especially non-parallel operations as division, each quotient needs to be computed after the previous quotient and so on,
 this means that we need to test values for normalization each clock cycle.  
