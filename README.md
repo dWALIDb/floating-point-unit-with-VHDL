@@ -31,6 +31,9 @@ Mostly these operations need normalization so we need loops especially non-paral
 this means that we need to test values for normalization each clock cycle.  
 For-loops are quite special in VHDL especially with std_logic signals, these signals update after the loop ends which may lead to unsynthesisable code, hence each unit has its control 
 unit that takes care of the normalization process.  
+The generics provide means to use the unit for 64-bit floeating point representation or even a custom made one. you just need to 
+give it the operand , mantissa and exponent lengths. If the fields do not add up to the operand's width then the program will 
+throw an error.  
 This module operates on upto **127Mhz** on altera's quartusII 13 software(CycloneII with balenced settings), and consumes **1229 logic elements** and **356 registers**. 
 # The supported operations:
 OP CODE | OPERATION  
