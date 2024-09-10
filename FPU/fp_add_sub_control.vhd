@@ -27,6 +27,7 @@ begin
 if(rst='1') then state_counter<=(others=>'0');done<='0';
 elsif(clk'event and clk='0') then if(go='1') then 
 				if(state_counter="111") then done<='1';
+				elsif(state_counter="100" and subtract='1' and mantissa_msb_for_subtraction='0') then state_counter<="100"; 
 				elsif(state_counter="100" and subtract='1' and mantissa_msb_for_subtraction='1') then state_counter<="110"; 
 				elsif(zero_mantissa='1' and state_counter="011") then state_counter<="111";
 				elsif(mantissa_msb='1' and state_counter="100") then state_counter<="101";
