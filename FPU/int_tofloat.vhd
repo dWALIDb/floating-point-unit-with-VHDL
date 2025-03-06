@@ -68,5 +68,5 @@ zero<='1' when A=absolute_zero else '0';
 
 CONTROL:int_tofloat_control port map(clk,rst,go,zero,mantissa_msb,ld_shifter,shift,ld_exponent,done);
 
-C<=A(operand_width-1)&final_exponent&normalized_value(operand_width-2 downto operand_width-mantissa_width-1);
+C<=A(operand_width-1)&final_exponent&normalized_value(operand_width-2 downto operand_width-mantissa_width-1) when a/=absolute_zero else absolute_zero;
 end arch;
