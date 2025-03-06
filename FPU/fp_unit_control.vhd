@@ -25,7 +25,7 @@ signal go_addition,go_multiplication,go_conversion1,go_conversion2:std_logic;
 -- op=0110 conversion(float to int)
 -- op=0111 absolute value
 -- op=1000 negative
-signal equal,div_byinf,div_byzero,mul_byzero,mul_byinf,add_inf,zero_by_zero,inf_by_inf,inf_mul_zero:std_logic;
+signal equal,div_byinf,div_byzero,mul_byzero,mul_byinf,add_inf,zero_by_zero,inf_by_inf,inf_mul_zero,zero_by_number:std_logic;
 begin 
 --special cases that require special solutions (modern problems require modern solutions xD )
 equal<='1' when (op="0010" and equal_ops='1')else '0';
@@ -35,6 +35,7 @@ mul_byzero<='1' when (op="0000" and (zero2='1' or zero1='1'))else '0';
 mul_byinf<='1' when (op="0000" and (infinity1='1' or infinity2='1'))else '0';
 add_inf<='1' when (op="0010" and (infinity1='1' or infinity2='1'))else '0';
 zero_by_zero<='1' when (op="0001" and (zero2='1' and zero1='1'))else '0';
+zero_by_number<='1'when (op="0001" and (zero1='1'))else '0';
 inf_by_inf<='1' when (op="0001" and (infinity1='1' and infinity2='1'))else '0';
 inf_mul_zero<='1' when (op="0000" and (zero2='1' or zero1='1') and (infinity2='1' or infinity1='1'))else '0';
 
@@ -54,9 +55,9 @@ go_multiplication<='1' when op="0000" or op="0001" else '0';--to enable only the
 process(clk,op)
 begin 
 if(clk'event and clk='0') then 
-	if(equal or div_byinf or mul_byzero) then output<="0010";
-	elsif(add_inf or div_byzero or mul_byinf) then output<="0011";
-	elsif(zero_by_zero or inf_by_inf or inf_mul_zero) then output<="0100";
+	if(equal='1' or div_byinf='1' or mul_byzero='1' or zero_by_number='1') then output<="0010";
+	elsif(add_inf='1' or div_byzero='1' or mul_byinf='1') then output<="0011";
+	elsif(zero_by_zero='1' or inf_by_inf='1' or inf_mul_zero='1') then output<="0100";
 	elsif(op="0011") then output<="0101";
 	elsif(op="0100") then output<="0110";
 	elsif(op="0101") then output<="0111";
